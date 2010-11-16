@@ -64,7 +64,7 @@ func logFatal(msg string) {
 
 func logLog(cat, msg string) {
 	if _DEBUG {
-		log.Stderr(cat + " - " + msg)
+		log.Print(cat + " - " + msg)
 	}
 }
 

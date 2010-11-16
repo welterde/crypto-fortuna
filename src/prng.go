@@ -21,7 +21,6 @@ import (
 	sha "crypto/sha256"
 	"hash"
 	"io"
-	"once"
 	"os"
 	"rand"
 	"strconv"
@@ -67,12 +66,13 @@ type Fortuna struct {
 
 var globalFortuna = newFortuna()
 var globalSyncronizedFortuna *SynchronizedPRNG
+var globalOnce *sync.Once = new(sync.Once)
 
 func init() {
 	globalSyncronizedFortuna = newSynchronizedFortuna(globalFortuna)
 	go updateSeedPeriodically(globalFortuna)
 	logInfo("init(): Fortuna is ready...")
-	once.Do(startAccumulator)
+	globalOnce.Do(startAccumulator)
 }
 
 func newFortuna() *Fortuna {
