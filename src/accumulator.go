@@ -86,7 +86,7 @@ func (r *devSource) getEntropy() ([]byte, os.Error) {
 	defer r.lock.Unlock()
 	if r.f == nil {
 		logInfo(r.name + ".getEntropy(): About to open device")
-		f, err := os.Open(r.name, os.O_RDONLY, 0)
+		f, err := os.OpenFile(r.name, os.O_RDONLY, 0)
 		if f == nil {
 			logError("Unable to open " + r.name + ": " + err.String())
 			return nil, err

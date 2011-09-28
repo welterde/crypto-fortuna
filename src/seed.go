@@ -122,7 +122,7 @@ func updateSeedPeriodically(f *Fortuna) {
 
 // openSeedFile opens the Fortuna user's random seed file.
 func openSeedFile(flag int) (*os.File, os.Error) {
-	return os.Open(getSeedFilePath(), flag, 0600) // only u can r+w
+	return os.OpenFile(getSeedFilePath(), flag, 0600) // only u can r+w
 }
 
 // createSeedFile creates the file name and all parent sub-directories.
@@ -135,7 +135,7 @@ func createSeedFile() os.Error {
 	//	if e1 != nil {
 	//		return e1
 	//	}
-	f, e2 := os.Open(getSeedFilePath(), os.O_WRONLY+os.O_CREAT, 0600) // only u can r+w
+	f, e2 := os.OpenFile(getSeedFilePath(), os.O_WRONLY+os.O_CREATE, 0600) // only u can r+w
 	if e2 != nil {
 		return e2
 	}
