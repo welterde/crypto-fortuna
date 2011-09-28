@@ -53,9 +53,6 @@ func Float64() float64 { return globalRand.Float64() }
 // Float32 returns, as a float32, a pseudo-random number in [0.0,1.0).
 func Float32() float32 { return globalRand.Float32() }
 
-// Float returns, as a float, a pseudo-random number in [0.0,1.0).
-func Float() float { return globalRand.Float() }
-
 // Perm returns, as a slice of n ints, a pseudo-random permutation of the integers [0,n).
 func Perm(n int) []int { return globalRand.Perm(n) }
 
